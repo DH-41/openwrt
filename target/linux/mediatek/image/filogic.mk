@@ -2506,18 +2506,21 @@ define Device/netgear_wax220
 endef
 TARGET_DEVICES += netgear_wax220
 
-define Device/netis_nx30v2
-  DEVICE_VENDOR := Netis
-  DEVICE_MODEL := NX30V2
+define Device/netis_nx30-v2
+  DEVICE_VENDOR := netis
+  DEVICE_MODEL := NX30
+  DEVICE_VARIANT := V2
   DEVICE_ALT0_VENDOR := Netcore
-  DEVICE_ALT0_MODEL := POWER30AX
+  DEVICE_ALT0_MODEL := POWER 30AX
   DEVICE_ALT1_VENDOR := Netcore
-  DEVICE_ALT1_MODEL := N30PRO
+  DEVICE_ALT1_MODEL := N30 Pro
   DEVICE_ALT2_VENDOR := GWBN
   DEVICE_ALT2_MODEL := GW3001
   DEVICE_ALT3_VENDOR := GLC
   DEVICE_ALT3_MODEL := W7
-  DEVICE_DTS := mt7981b-netis-nx30v2
+  DEVICE_ALT4_VENDOR := netis
+  DEVICE_ALT4_MODEL := MEX605
+  DEVICE_DTS := mt7981b-netis-nx30-v2
   DEVICE_DTS_DIR := ../dts
   DEVICE_DTC_FLAGS := --pad 4096
   DEVICE_DTS_LOADADDR := 0x43f00000
@@ -2533,9 +2536,9 @@ define Device/netis_nx30v2
   IMAGE/sysupgrade.itb := append-kernel | fit gzip $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-with-rootfs | pad-rootfs | append-metadata
   ARTIFACTS := spim-nand-preloader.bin spim-nand-bl31-uboot.fip
   ARTIFACT/spim-nand-preloader.bin	:= mt7981-bl2 spim-nand-ddr3
-  ARTIFACT/spim-nand-bl31-uboot.fip	:= mt7981-bl31-uboot netis_nx30v2
+  ARTIFACT/spim-nand-bl31-uboot.fip	:= mt7981-bl31-uboot netis_nx30-v2
 endef
-TARGET_DEVICES += netis_nx30v2
+TARGET_DEVICES += netis_nx30-v2
 
 define Device/netis_nx31
   DEVICE_VENDOR := netis

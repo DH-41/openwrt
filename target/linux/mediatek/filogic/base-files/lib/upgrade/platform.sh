@@ -141,7 +141,7 @@ platform_do_upgrade() {
 	mediatek,mt7981-rfb|\
 	mediatek,mt7988a-rfb|\
 	mercusys,mr90x-v1-ubi|\
-	netis,nx30v2|\
+	netis,nx30-v2|\
 	netis,nx31|\
 	netis,nx32u|\
 	nokia,ea0326gmp|\
