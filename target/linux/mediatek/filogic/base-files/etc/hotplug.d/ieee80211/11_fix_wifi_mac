@@ -212,6 +212,14 @@ case "$board" in
 		[ "$PHYNBR" = "0" ] && echo "$addr_2g" > /sys${DEVPATH}/macaddress
 		[ "$PHYNBR" = "1" ] && echo "$addr_5g" > /sys${DEVPATH}/macaddress
 		;;
+	netis,mex605-stock)
+		addr=$(mtd_get_mac_binary "Factory" 0x1fef20)
+		addr_2g=$(macaddr_setbit_la $addr)
+		addr_5g=$(macaddr_unsetbit $(macaddr_setbit addr_2g 26) 25)
+		addr_5g=$(macaddr_unsetbit $(macaddr_unsetbit addr_5g 27) 28)
+		[ "$PHYNBR" = "0" ] && echo "$addr_2g" > /sys${DEVPATH}/macaddress
+		[ "$PHYNBR" = "1" ] && echo "$addr_5g" > /sys${DEVPATH}/macaddress
+		;;
 	netis,nx31|\
 	netis,nx32u)
 		addr=$(mtd_get_mac_binary "Factory" 0x4)

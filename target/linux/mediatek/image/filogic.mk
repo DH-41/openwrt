@@ -2818,6 +2818,19 @@ define Device/netis_eap930-v1
 endef
 TARGET_DEVICES += netis_eap930-v1
 
+define Device/netis_mex605-stock
+  DEVICE_VENDOR := netis
+  DEVICE_MODEL := MEX605 (Stock Layout)
+  DEVICE_DTS := mt7981b-netis-mex605-stock
+  DEVICE_DTS_DIR := ../dts
+  SUPPORTED_DEVICES += mediatek,mt7981-spim-snand-rfb
+  KERNEL_INITRAMFS := kernel-bin | lzma | \
+	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
+endef
+TARGET_DEVICES += netis_mex605-stock
+
 define Device/netis_n6-v2
   DEVICE_VENDOR := netis
   DEVICE_MODEL := N6 V2
@@ -2850,14 +2863,12 @@ define Device/netis_nx30v2
   DEVICE_VARIANT := V2
   DEVICE_ALT0_VENDOR := Netcore
   DEVICE_ALT0_MODEL := POWER 30AX
-  DEVICE_ALT1_VENDOR := Netcore
-  DEVICE_ALT1_MODEL := N30 Pro
-  DEVICE_ALT2_VENDOR := GWBN
-  DEVICE_ALT2_MODEL := GW3001
-  DEVICE_ALT3_VENDOR := GLC
-  DEVICE_ALT3_MODEL := W7
-  DEVICE_ALT4_VENDOR := netis
-  DEVICE_ALT4_MODEL := MEX605
+  DEVICE_ALT1_VENDOR := GWBN
+  DEVICE_ALT1_MODEL := GW3001
+  DEVICE_ALT2_VENDOR := GLC
+  DEVICE_ALT2_MODEL := W7
+  DEVICE_ALT3_VENDOR := netis
+  DEVICE_ALT3_MODEL := MEX605 (OpenWrt U-Boot Layout)
   DEVICE_DTS := mt7981b-netis-nx30v2
   DEVICE_DTS_DIR := ../dts
   DEVICE_DTC_FLAGS := --pad 4096
